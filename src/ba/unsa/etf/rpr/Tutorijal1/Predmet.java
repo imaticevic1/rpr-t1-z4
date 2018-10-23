@@ -29,12 +29,23 @@ public class Predmet {
         SifraPredmeta = sifraPredmeta;
     }
 
+
     public int getMaksBrojStudenata() {
         return maksBrojStudenata;
+    }
+    public boolean provjeriStudenta(Student s){
+        if(maksBrojStudenata == 0) return false;
+        for(int i = 0; i < maksBrojStudenata; i++)
+            if(studenti[i] != null)
+            if ((studenti[i].getIme()).equals(s.getIme()) && (studenti[i].getPrezime()).equals(s.getPrezime())
+                    && studenti[i].getBrojIndeksa() == s.getBrojIndeksa())
+                return true;
+            return false;
     }
     public void upisiStudenta(Student s){
         if(maksBrojStudenata == 0) throw new ArrayIndexOutOfBoundsException
                                     ("Predmet ne prima nijednog studenta!");
+        if(this.provjeriStudenta(s)) throw new SecurityException("Student je vec upisan!");
         int i = 0;
         for(; i < maksBrojStudenata; i++)
             if(studenti[i] == null) break;
@@ -42,6 +53,7 @@ public class Predmet {
         studenti[i] = s;
     }
     public void ispisiStudenta(Student s) {
+        if(!this.provjeriStudenta(s) || this == null) throw new UnsupportedOperationException("Student nije ni upisan");
         for (int i = 0; i < maksBrojStudenata; i++)
             if ((studenti[i].getIme()).equals(s.getIme()) && (studenti[i].getPrezime()).equals(s.getPrezime())
                     && studenti[i].getBrojIndeksa() == s.getBrojIndeksa()) {
@@ -50,7 +62,14 @@ public class Predmet {
             }
     }
     public void ispisiSpisakStudenata() {
-        if(this == null) throw new NullPointerException("Nema upisanih studenata!");
+        boolean imaIh = false;
+        for(int i = 0; i < maksBrojStudenata; i++)
+            if(studenti[i] != null){
+                imaIh = true;
+                break;
+            }
+            if(!imaIh)throw new NullPointerException("Nema upisanih studenata!");
+
         int nijeNull = 0;
         for(int i = 0; i < maksBrojStudenata; i++) {
             if(studenti[i] != null) {

@@ -43,19 +43,25 @@ class PredmetTest {
         Predmet predmet2 = new Predmet("Programiranje", 142, 0);
         Student s = new Student("Marko", "Markioli", 5748);
         assertThrows(IndexOutOfBoundsException.class, ()->{predmet2.upisiStudenta(s);});
+    }
+    @Test
+    void upisiStudenta1() {
+        Predmet predmet2 = new Predmet("Programiranje", 142, 0);
+        Student s = new Student("Marko", "Markioli", 5748);
         assertThrows(ArrayIndexOutOfBoundsException.class, ()->{predmet2.upisiStudenta(s);});
     }
     @Test
-    void ispisiStudenta() {
-        Predmet predmet2 = new Predmet("Programiranje", 142, 3);
+    void upisiStudenta2() {
+        Predmet predmet3 = new Predmet("Programiranje", 142, 3);
         Student s = new Student("Marko", "Markioli", 5748);
-        assertThrows(NullPointerException.class, ()->{predmet2.ispisiStudenta(s);});
+        predmet3.upisiStudenta(s);
+        assertThrows(SecurityException.class, ()->{predmet3.upisiStudenta(s);});
+    }
+    @Test
+    void ispisiStudenta() {
+        Predmet predmet0 = new Predmet("Programiranje", 142, 4);
+        Student s = new Student("Marko", "Markovic", 5748);
+        assertThrows(UnsupportedOperationException.class, ()->{predmet0.ispisiStudenta(s);});
     }
 
-    @Test
-    void ispisiSpisakStudenata() {
-    }
-    @Test
-    void main() {
-    }
 }

@@ -14,10 +14,13 @@ public class Program {
             predmet.upisiStudenta(s2);
             predmet.upisiStudenta(s3);
             predmet.ispisiSpisakStudenata();
-            predmet.ispisiStudenta(s2);
-            predmet.ispisiSpisakStudenata();
+            predmet.ispisiStudenta(s1);
             predmet.upisiStudenta(s4);
             predmet.ispisiSpisakStudenata();
+            predmet.ispisiStudenta(s1);
+        }
+        catch(SecurityException a){
+            System.out.println(a.getMessage());
         }
         catch(ArrayIndexOutOfBoundsException f){
             System.out.println(f.getMessage());
@@ -25,8 +28,13 @@ public class Program {
         catch(IndexOutOfBoundsException e){
             System.out.println(e.getMessage());
         }
+        catch(UnsupportedOperationException b){
+            System.out.println(b.getMessage());
+        }
         catch(NullPointerException g){
             System.out.println(g.getMessage());
         }
+
+
     }
 }
